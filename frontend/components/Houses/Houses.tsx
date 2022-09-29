@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import { House } from ".";
 import { env } from "../../utils/env";
@@ -23,12 +24,16 @@ export const Houses = () => {
 
   const handleGetHouses = async (isSearching?: boolean) => {
     setstate({ ...state, loading: true });
-    const response = await axios.get(
-      isSearching
-        ? `${env.apiUrl}/v1/houses?name=${state.search}`
-        : `${env.apiUrl}/v1/houses`
-    );
-    setstate({ ...state, houses: response.data.payload, loading: false });
+    try {
+      const response = await axios.get(
+        isSearching
+          ? `${env.apiUrl}/v1/houses?name=${state.search}`
+          : `${env.apiUrl}/v1/houses`
+      );
+      setstate({ ...state, houses: response.data.payload, loading: false });
+    } catch (error) {
+      setstate({ ...state, loading: false });
+    }
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setstate({ ...state, search: e.target.value });
@@ -50,11 +55,16 @@ export const Houses = () => {
 
       {state.loading ? (
         <HousesSkeleton />
-      ) : (
+      ) : state.houses?.length ? (
         <div className="mt-8">
           {state.houses?.map((h, i) => (
             <House house={h} key={i} />
           ))}
+        </div>
+      ) : (
+        <div className="mt-20 flex justify-between items-center flex-col">
+          <Image src={"/no_data.svg"} alt="No Data" height={200} width={200} />
+          <p className="mt-8">No houses found</p>
         </div>
       )}
     </div>
