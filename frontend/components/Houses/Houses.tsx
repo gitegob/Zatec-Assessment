@@ -36,14 +36,18 @@ export const Houses = () => {
 
   return (
     <div>
-      <input
-        type="search"
-        name="search"
-        id="date"
-        placeholder="Search house name..."
-        className="bg-[#FCF9FF] p-4 mx-auto rounded-md w-300 w-2/3 block"
-        onChange={handleChange}
-      />
+      <div className="flex items-center justify-between">
+        <p className="text-xl font-bold">Houses ({state.houses?.length})</p>
+        <input
+          type="search"
+          name="search"
+          id="date"
+          placeholder="Search..."
+          className="bg-[#FCF9FF] p-4 rounded-md w-1/3 block"
+          onChange={handleChange}
+        />
+      </div>
+
       {state.loading ? (
         <HousesSkeleton />
       ) : (

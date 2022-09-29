@@ -20,7 +20,7 @@ const Home: NextPage = ({ data }: any) => {
       <Header />
       <main className="flex justify-center">
         <MainContent>
-          <Subnav />
+          {/* <Subnav /> */}
           <div className="flex mt-2 justify-center">
             <RightCol>
               <Houses />
