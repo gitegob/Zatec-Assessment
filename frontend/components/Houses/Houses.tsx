@@ -1,40 +1,12 @@
-import axios from "axios";
 import Image from "next/image";
-import { ChangeEvent, useEffect, useState } from "react";
+import Link from "next/link";
+import { ChangeEvent } from "react";
 import { House } from ".";
-import { env } from "../../utils/env";
+import { useGetHouses } from "../../hooks/use-get-houses";
 import { HousesSkeleton } from "./HousesSkeleton";
 
 export const Houses = () => {
-  const [state, setstate] = useState({
-    houses: [],
-    search: "",
-    loading: false,
-  });
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      (async () => {
-        if (state.search.length >= 5) await handleGetHouses(true);
-        else if (state.search.length === 0 || state.search === null)
-          await handleGetHouses(false);
-      })();
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, [state.search]);
-
-  const handleGetHouses = async (isSearching?: boolean) => {
-    setstate({ ...state, loading: true });
-    try {
-      const response = await axios.get(
-        isSearching
-          ? `${env.apiUrl}/v1/houses?name=${state.search}`
-          : `${env.apiUrl}/v1/houses`
-      );
-      setstate({ ...state, houses: response.data.payload, loading: false });
-    } catch (error) {
-      setstate({ ...state, loading: false });
-    }
-  };
+  const { state, setstate } = useGetHouses();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setstate({ ...state, search: e.target.value });
   };

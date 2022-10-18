@@ -1,13 +1,10 @@
-import { useState } from "react";
-import { BsChevronContract, BsChevronExpand } from "react-icons/bs";
-export const House = ({ house }: { house: any }) => {
+import { useRouter } from "next/router";
+import { PropsWithChildren, useState } from "react";
+export const House = ({ house }: PropsWithChildren & { house: any }) => {
+  const router = useRouter();
   const [showDetails, setshowDetails] = useState(false);
-  const [state, setstate] = useState({ currentLord: null, heir: null });
   return (
-    <div
-      className="border-gray-100 border-[1px] rounded-md shadow-sm my-4 p-4 cursor-pointer"
-      onClick={() => setshowDetails(!showDetails)}
-    >
+    <div className="border-gray-100 border-[1px] rounded-md shadow-sm my-4 p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex justify-between">
           <div>
@@ -17,9 +14,21 @@ export const House = ({ house }: { house: any }) => {
             <div className="text-gray-500 font-light">{house.region}</div>
           </div>
         </div>
-        <div className="cursor-pointer">
+        {/* <div className="cursor-pointer">
           {showDetails ? <BsChevronContract /> : <BsChevronExpand />}
-        </div>
+        </div> */}
+        <button
+          className="py-3 px-5 bg-purple-200 rounded-md text-purple-500"
+          onClick={() =>
+            router.push(
+              `/houses/${
+                house.url?.split("/")[house.url?.split("/")?.length - 1]
+              }`
+            )
+          }
+        >
+          View
+        </button>
       </div>
       <div
         className={`transition-height ease-in-out duration-500 ${
