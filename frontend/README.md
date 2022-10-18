@@ -1,6 +1,7 @@
 # Zatec assessment frontend
 
-This is a website where you can search for 'houses' of Game of Thrones. As a result of the search, the page will show a list of houses that match the search query.
+This is a website where you can search for 'houses' of Game of Thrones. As a result of the search, the page will show a
+list of houses that match the search query.
 
 ## Running the Frontend
 

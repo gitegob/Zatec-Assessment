@@ -10,10 +10,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Poppins", ...defaultTheme.fontFamily.sans],
+        sans: ["Jost", "Poppins", ...defaultTheme.fontFamily.sans],
       },
       transitionProperty: {
         height: "height",
+      },
+      colors: {
+        "light-gray": "#868686",
+        "dark-gray": "#212121",
+        gold: "#A25C0A",
       },
     },
   },

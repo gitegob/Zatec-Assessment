@@ -1,17 +1,13 @@
-import { HouseSkeleton } from "./HouseSkeleton";
+import {HouseSkeleton} from "./HouseSkeleton";
 
-export const HousesSkeleton = ({
-  numberOfLines = 10,
-}: {
-  numberOfLines?: number;
-}) => {
+export const HousesSkeleton = ({number = 10}: { number?: number }) => {
   return (
     <div>
-      <div className="mt-8 animate-pulse">
-        {Array(numberOfLines)
+      <div className="animate-pulse">
+        {Array(number)
           .fill("i")
           ?.map((h, i) => (
-            <HouseSkeleton key={i} />
+            <HouseSkeleton key={i}/>
           ))}
       </div>
     </div>

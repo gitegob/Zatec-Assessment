@@ -1,5 +1,9 @@
-export const HouseSkeleton = () => {
+export const HouseSkeleton = ({heightInPx}: { heightInPx?: number }) => {
   return (
-    <div className="animate-pulse rounded-md shadow-md my-2 p-4 bg-purple-200 h-20"></div>
+    <div
+      className={`bg-dark-gray p-5 rounded-md ${
+        heightInPx ? `h-[${heightInPx}px]` : `h-48`
+      } animate-pulse w-full`}
+    ></div>
   );
 };
