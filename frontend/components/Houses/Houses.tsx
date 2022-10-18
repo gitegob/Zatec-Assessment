@@ -1,14 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ChangeEvent } from "react";
-import { House } from ".";
-import { useGetHouses } from "../../hooks/use-get-houses";
-import { HousesSkeleton } from "./HousesSkeleton";
+import {ChangeEvent} from "react";
+import {House} from "./House";
+import {useGetHouses} from "../../hooks/use-get-houses";
+import {HousesSkeleton} from "./HousesSkeleton";
 
 export const Houses = () => {
-  const { state, setstate } = useGetHouses();
+  const {state, setstate} = useGetHouses();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setstate({ ...state, search: e.target.value });
+    setstate({...state, search: e.target.value});
   };
 
   return (
@@ -18,7 +17,7 @@ export const Houses = () => {
         <input
           type="search"
           name="search"
-          id="date"
+          id="search"
           placeholder="Search..."
           className="bg-[#FCF9FF] p-4 rounded-md w-1/3 block"
           onChange={handleChange}
@@ -26,16 +25,16 @@ export const Houses = () => {
       </div>
 
       {state.loading ? (
-        <HousesSkeleton />
+        <HousesSkeleton/>
       ) : state.houses?.length ? (
         <div className="mt-8">
           {state.houses?.map((h, i) => (
-            <House house={h} key={i} />
+            <House house={h} key={i}/>
           ))}
         </div>
       ) : (
         <div className="mt-20 flex justify-between items-center flex-col">
-          <Image src={"/no_data.svg"} alt="No Data" height={200} width={200} />
+          <Image src={"/no_data.svg"} alt="No Data" height={200} width={200}/>
           <p className="mt-8">No houses found</p>
         </div>
       )}

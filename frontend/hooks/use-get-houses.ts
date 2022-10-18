@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { env } from "../utils/env";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
+import {env} from "../utils/env";
 
 export function useGetHouses() {
   const [state, setstate] = useState({
@@ -10,16 +10,16 @@ export function useGetHouses() {
     loading: false,
   });
   const handleGetHouses = async (isSearching?: boolean) => {
-    setstate({ ...state, loading: true });
+    setstate({...state, loading: true});
     try {
       const response = await axios.get(
         isSearching
           ? `${env.apiUrl}/houses?name=${state.search}`
           : `${env.apiUrl}/houses`
       );
-      setstate({ ...state, houses: response.data, loading: false });
+      setstate({...state, houses: response.data, loading: false});
     } catch (error) {
-      setstate({ ...state, loading: false });
+      setstate({...state, loading: false});
     }
   };
 
@@ -31,7 +31,7 @@ export function useGetHouses() {
     }, 500);
     return () => clearTimeout(timeout);
   }, [state.search]);
-  return { state, setstate };
+  return {state, setstate};
 }
 
 export function useGetHouse(id: string) {
@@ -44,12 +44,12 @@ export function useGetHouse(id: string) {
     loading: false,
   });
   const handleGetHouse = async () => {
-    setstate({ ...state, loading: true });
+    setstate({...state, loading: true});
     try {
       const response = await axios.get(`${env.apiUrl}/houses/${id}`);
-      setstate({ ...state, house: response.data, loading: false });
+      setstate({...state, house: response.data, loading: false});
     } catch (error) {
-      setstate({ ...state, loading: false });
+      setstate({...state, loading: false});
     }
   };
 
@@ -62,5 +62,5 @@ export function useGetHouse(id: string) {
       }
     }
   }, [router.isReady, router.query.id]);
-  return { state, setstate };
+  return {state, setstate};
 }
