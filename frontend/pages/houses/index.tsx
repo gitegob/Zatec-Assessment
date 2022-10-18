@@ -1,12 +1,11 @@
-import type { NextPage } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
-import { Header } from "../components/Header";
-import { Houses } from "../components/Houses";
-import { MainContent } from "../components/MainContent";
-import { RightCol } from "../components/RightCol";
-import { Subnav } from "../components/Subnav";
+import { Header } from "../../components/Header";
+import { Houses } from "../../components/Houses";
+import { MainContent } from "../../components/MainContent";
+import { RightCol } from "../../components/RightCol";
 
-const Home: NextPage = ({ data }: any) => {
+const HousesPage: NextPage = () => {
   return (
     <div>
       <Head>
@@ -17,10 +16,8 @@ const Home: NextPage = ({ data }: any) => {
         />
         <link rel="icon" href="/gotlogo.png" />
       </Head>
-      <Header />
       <main className="flex justify-center">
         <MainContent>
-          {/* <Subnav /> */}
           <div className="flex mt-2 justify-center">
             <RightCol>
               <Houses />
@@ -35,4 +32,4 @@ const Home: NextPage = ({ data }: any) => {
 export interface IApiResponseProps {
   data?: any;
 }
-export default Home;
+export default HousesPage;
