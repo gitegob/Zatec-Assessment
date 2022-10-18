@@ -16,6 +16,7 @@ const HousesPage: NextPage = () => {
         />
         <link rel="icon" href="/gotlogo.png" />
       </Head>
+      <Header />
       <main className="flex justify-center">
         <MainContent>
           <div className="flex mt-2 justify-center">
