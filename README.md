@@ -1,4 +1,4 @@
-# Zatec assessment
+# Game of thrones web app
 
 This is a website where you can search for 'houses' of Game of Thrones. As a result of the search, the page will show a list of houses that match the search query.
 
